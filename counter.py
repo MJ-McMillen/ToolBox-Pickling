@@ -30,7 +30,27 @@ def update_counter(file_name, reset=False):
     >>> update_counter('blah2.txt')
     2
     """
-    pass
+    if reset == True:
+        f = open(file_name ,'wb',True)
+        f.write(bin(1))
+        f.close
+        return 1
+    elif exists(file_name) == False:
+        f = open(file_name ,'wb',True)
+        f.write(bin(1))
+        f.close
+        return 1
+    else:
+        f = open(file_name ,'rb+',True)
+        st = f.read(10)
+        x = int(st[2:],2)
+        x += 1
+        f.write(bin(x))
+        f.close
+        return x
+
+
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
